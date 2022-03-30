@@ -52,7 +52,7 @@ export const CalculatorProvider = ({ children }) => {
 			setSelected(value);
 		} else if (e.target.classList.contains('tip--custom')) {
 			// Limit the maximum amount of tip percentage
-			if (Number(value) >= 0 && Number(value) <= 50) {
+			if (value.length < 3 && Number(value) >= 0 && Number(value) <= 50) {
 				setCustomTip(value);
 			} else {
 				setCustomTip(customTip);

@@ -256,7 +256,8 @@ body {
 /* Tip Section */
 .bill-wrapper,
 .tips-wrapper,
-.people-wrapper {
+.people-wrapper,
+.label-wrapper {
 	grid-column: 1 / -1;
 }
 
@@ -282,7 +283,7 @@ body {
 
 .tips-wrapper {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
 	gap: 0.5rem;
 }
 
@@ -293,6 +294,7 @@ body {
 .label-wrapper {
 	display: flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
 /* Result Section */

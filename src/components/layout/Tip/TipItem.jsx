@@ -4,7 +4,7 @@ import CalculatorContext from '../../../context/CalculatorContext';
 import { useContext } from 'react';
 
 function TipItem({ value, index }) {
-	const { handleTipOption, customTip } = useContext(CalculatorContext);
+	const { handleTipOption, customTip, msg, currentInput } = useContext(CalculatorContext);
 	return (
 		<>
 			{index !== 5 ? (
@@ -12,7 +12,16 @@ function TipItem({ value, index }) {
 					{value}%
 				</button>
 			) : (
-				<Input value={customTip} placeholder={value} className={'tip--custom tip'} />
+				<Input
+					value={customTip}
+					placeholder={value}
+					className={
+						msg && currentInput.includes('tip--custom')
+							? 'tip--custom tip error'
+							: 'tip--custom tip'
+					}
+					step={'any'}
+				/>
 			)}
 		</>
 	);

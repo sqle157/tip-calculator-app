@@ -2,7 +2,8 @@ import { useContext, useEffect } from 'react';
 import CalculatorContext from '../../context/CalculatorContext.js';
 
 function ResultSection() {
-	const { total, tipAmount, calculateAmount, reset, isReset } = useContext(CalculatorContext);
+	const { total, tipAmount, calculateAmount, reset, isReset, msg } =
+		useContext(CalculatorContext);
 
 	// Recalculate everytime a value change
 	useEffect(() => {
@@ -10,7 +11,11 @@ function ResultSection() {
 	}, [calculateAmount]);
 
 	return (
-		<div className='calculator-results'>
+		<div
+			className='calculator-results'
+			style={{
+				marginTop: msg && msg !== "Can't be 0" && window.innerWidth <= 380 ? '3rem' : 0,
+			}}>
 			<div className='result'>
 				<div className='title'>
 					<p>Tip Amount</p>

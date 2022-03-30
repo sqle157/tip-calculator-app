@@ -13,53 +13,59 @@ export const CalculatorProvider = ({ children }) => {
 
 	// Variables for handling active states
 	const [msg, setMsg] = useState('');
-	const [error, setError] = useState(false);
 	const [currentInput, setCurrentInput] = useState('');
 	const [currentTip, setCurrentTip] = useState(null); // Store the previous tip option
 	const [isReset, setIsReset] = useState(false);
 
 	// Handle Bill and People input
 	const handleOnChange = (e) => {
-		const value = e.target.value;
+		let value = e.target.value;
 
 		// console.log(value);
 		setIsReset(true);
+		setCurrentInput(e.target.className);
+
+		// console.log(value);
+		if (Number(value) < 1 && value !== '') {
+			setMsg("Can't be 0");
+		} else if (Number(value) > 0 && /^0+/.test(value)) {
+			setMsg('');
+			value = value.replace(/^0+/, '');
+		} else if (!e.target.validity.valid) {
+			setMsg(e.target.validationMessage);
+		} else {
+			setMsg('');
+		}
 
 		if (e.target.classList.contains('bill')) {
 			setBill(value);
 		} else if (e.target.classList.contains('people')) {
-			if (value !== '' && Number(value) > 0) {
-				setMsg('');
-				setError(false);
-			} else if (value !== '' && Number(value) === 0) {
-				setMsg("Can't be 0");
-				setError(true);
-			}
 			setPeople(value);
 		}
-
-		setCurrentInput(e.target.className);
 	};
 
-	// Handle Tip Option Click (5,10,20,25,50,Custom)
+	// Handle Tip Option (5,10,20,25,50,Custom)
 	const handleTipOption = (e, value) => {
-		// console.log(value);
 		setIsReset(true);
 		removeActive(e.target);
+		setCurrentTip(e.target);
+		setCurrentInput(e.target.className);
 
+		// console.log(currentTip);
 		if (!e.target.classList.contains('tip--custom')) {
 			e.target.classList.add('active');
 			setSelected(value);
 		} else if (e.target.classList.contains('tip--custom')) {
+			if (Number(value) > 0 && /^0+/.test(value)) {
+				value = value.replace(/^0+/, '');
+			}
 			// Limit the maximum amount of tip percentage
-			if (value.length < 3 && Number(value) >= 0 && Number(value) <= 50) {
+			if (value.length <= 4 && Number(value) >= 0 && Number(value) <= 50) {
 				setCustomTip(value);
 			} else {
 				setCustomTip(customTip);
 			}
 		}
-		setCurrentTip(e.target);
-		// console.log(value);
 	};
 
 	// Calculate Tip Amount and Total per person
@@ -111,7 +117,6 @@ export const CalculatorProvider = ({ children }) => {
 		setTotal('0.00');
 		setPeople('');
 		setMsg('');
-		setError(false);
 		setCurrentInput('');
 		setCurrentTip(null);
 		setIsReset(false);
@@ -125,7 +130,6 @@ export const CalculatorProvider = ({ children }) => {
 				people,
 				tipAmount,
 				msg,
-				error,
 				currentInput,
 				total,
 				customTip,

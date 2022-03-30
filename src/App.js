@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from './assets/logo.svg';
+import { CalculatorProvider } from './context/CalculatorContext';
+import TipSection from './components/layout/TipSection';
+import ResultSection from './components/layout/ResultSection';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<CalculatorProvider>
+			<img className='logo' src={logo} alt='' />
+			<div className='container'>
+				<div className='grid'>
+					<TipSection />
+					<ResultSection />
+				</div>
+			</div>
+		</CalculatorProvider>
+	);
 }
 
 export default App;

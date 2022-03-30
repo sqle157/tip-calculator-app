@@ -1,13 +1,337 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap');
+
+/* Reset CSS */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+	margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+	list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+	scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+	min-height: 100vh;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+	text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+	max-width: 100%;
+	display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+	html:focus-within {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/* Main CSS */
+:root {
+	/* Colors */
+	--clr-primary: hsl(172, 67%, 45%);
+	--clr-neutral-900: hsl(183, 100%, 15%);
+	--clr-neutral-700: hsl(186, 14%, 43%);
+	--clr-neutral-400: hsl(184, 14%, 56%);
+	--clr-neutral-300: hsl(185, 41%, 84%);
+	--clr-neutral-200: hsl(189, 41%, 97%);
+	--clr-neutral-100: hsl(0, 0%, 100%);
+
+	/* Font-family */
+	--ff-primary: 'Space Mono', monospace;
+
+	/* Font-size */
+	--fs-48: 3rem;
+	--fs-32: 2rem;
+	--fs-24: 1.5rem;
+	--fs-20: 1.25rem;
+	--fs-16: 1rem;
+	--fs-13: 0.8125rem;
+}
+
+h1 {
+	font-size: var(--fs-48);
+	color: var(--clr-primary);
+	line-height: 1.48;
+}
+
+button {
+	padding: 0;
+}
+
+button:disabled {
+	opacity: 0.2;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type='number'] {
+	-moz-appearance: textfield;
+	width: 100%;
+	height: 100%;
+	border: none;
+	outline: none;
+	border-radius: inherit;
+	background-color: var(--clr-neutral-200);
+	color: var(--clr-neutral-900);
+	font-size: var(--fs-24);
+}
+
+input[type='number']:focus {
+	border: 2px solid var(--clr-primary);
+}
+
+input[type='number'].error,
+input[type='number'].error:focus {
+	border: 2px solid #e17457;
+}
+
+body {
+	font-family: var(--ff-primary);
+	font-size: var(--fs-16);
+	font-weight: 700;
+	background-color: var(--clr-neutral-300);
+	display: grid;
+	place-items: center;
+}
+
+/* Utilities Classes */
+#root {
+	width: 100%;
+}
+
+.logo {
+	margin-inline: auto;
+	margin-bottom: 5rem;
+}
+
+.container {
+	width: min(100%, 920px);
+	margin-inline: auto;
+	padding: 2rem;
+	background-color: var(--clr-neutral-100);
+	border-radius: 1rem;
+}
+
+.container--bg {
+	background-color: var(--clr-neutral-100);
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 0.95fr 1fr;
+	gap: 3rem;
+}
+
+.icon {
+	position: absolute;
+	left: 1rem;
+}
+
+.tip {
+	cursor: pointer;
+	height: 3rem;
+	border: none;
+	border-radius: 0.25rem;
+	background-color: var(--clr-neutral-900);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--clr-neutral-100);
+	font-size: var(--fs-24);
+}
+
+.tip:hover:not(:last-of-type) {
+	background-color: var(--clr-neutral-300);
+	color: var(--clr-neutral-900);
+}
+
+.tip--custom {
+	text-align: center;
+	border-radius: 0.25rem !important;
+}
+
+.active {
+	color: var(--clr-neutral-900);
+	background-color: var(--clr-primary);
+}
+
+.error-msg {
+	color: #e17457;
+}
+
+.d-none {
+	display: none;
+}
+
+.d-block {
+	display: block;
+}
+
+.btn {
+	cursor: pointer;
+	margin-top: auto;
+	padding: 0.5rem;
+	background-color: var(--clr-primary);
+	border: none;
+	border-radius: 0.25rem;
+	font-size: var(--fs-20);
+	color: var(--clr-neutral-900);
+	text-transform: uppercase;
+}
+
+.btn:hover {
+	background-color: var(--clr-neutral-300);
+}
+
+/*  Main CSS */
+.calculator-tips {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	max-height: 24.25rem;
+	row-gap: 2rem;
+	margin-block: auto;
+}
+
+/* Tip Section */
+.bill-wrapper,
+.tips-wrapper,
+.people-wrapper {
+	grid-column: 1 / -1;
+}
+
+.label {
+	font-size: 1rem;
+	color: var(--clr-neutral-700);
+}
+
+.input {
+	height: 3rem;
+	display: flex;
+	align-items: center;
+	position: relative;
+	border-radius: 0.25rem;
+}
+
+.input > input {
+	line-height: 1.5;
+	text-align: right;
+	padding-right: 1rem;
+}
+
+.tips-wrapper {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+	gap: 0.5rem;
+}
+
+.tips-wrapper .label {
+	grid-column: 1 / -1;
+}
+
+.label-wrapper {
+	display: flex;
+	justify-content: space-between;
+}
+
+/* Result Section */
+.calculator-results {
+	height: 25rem;
+	padding: 2rem;
+	background-color: var(--clr-neutral-900);
+	display: flex;
+	flex-direction: column;
+	border-radius: 1rem;
+}
+
+.result {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 2rem;
+	color: var(--clr-neutral-100);
+}
+
+.person {
+	font-size: var(--fs-13);
+	color: var(--clr-neutral-400);
+}
+
+@media (max-width: 48em) {
+	.logo {
+		margin-block: 3rem;
+	}
+
+	.grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 35em) {
+	h1 {
+		font-size: var(--fs-32);
+	}
+
+	.container {
+		padding: 2rem 1rem;
+	}
+
+	.calculator-results {
+		height: 16.25rem;
+	}
 }

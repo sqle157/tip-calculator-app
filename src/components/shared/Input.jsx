@@ -16,6 +16,7 @@ function Input({ placeholder, className, value }) {
 		<input
 			type='number'
 			min={0}
+			max={50}
 			placeholder={placeholder}
 			className={className}
 			value={value}

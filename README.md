@@ -15,7 +15,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Github](https://github.com/sqle157/tip-calculator-app)
-- Live Site URL: [Live Demo](https://your-live-site-url.com)
+- Live Site URL: [Live Demo](https://tip-calculator-app-henna.vercel.app/)
 
 ### Built with
 

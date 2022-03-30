@@ -12,9 +12,7 @@ function TipSection() {
 		<div className='calculator-tips'>
 			<div className='bill-wrapper'>
 				<div className='label-wrapper'>
-					<label className='label' htmlFor=''>
-						Bill
-					</label>
+					<label className='label'>Bill</label>
 				</div>
 				<div className='input'>
 					<img className='icon' src={dollar} alt='' />
@@ -23,18 +21,14 @@ function TipSection() {
 			</div>
 
 			<div className='tips-wrapper'>
-				<label className='label' htmlFor=''>
-					Select Tip %
-				</label>
+				<label className='label'>Select Tip %</label>
 
 				<TipList />
 			</div>
 
 			<div className='people-wrapper'>
 				<div className='label-wrapper'>
-					<label className='label' htmlFor=''>
-						Number of People
-					</label>
+					<label className='label'>Number of People</label>
 					<p className={error && currentInput === 'people' ? 'error-msg d-block' : 'd-none'}>
 						{msg}
 					</p>

@@ -141,6 +141,11 @@ input[type='number'].error:focus {
 	border: 2px solid #e17457;
 }
 
+main {
+	width: 100%;
+	height: 100%;
+}
+
 body {
 	font-family: var(--ff-primary);
 	font-size: var(--fs-16);

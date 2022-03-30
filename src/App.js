@@ -6,13 +6,15 @@ import ResultSection from './components/layout/ResultSection';
 function App() {
 	return (
 		<CalculatorProvider>
-			<img className='logo' src={logo} alt='' />
-			<div className='container'>
-				<div className='grid'>
-					<TipSection />
-					<ResultSection />
+			<main>
+				<img className='logo' src={logo} alt='' />
+				<div className='container'>
+					<div className='grid'>
+						<TipSection />
+						<ResultSection />
+					</div>
 				</div>
-			</div>
+			</main>
 		</CalculatorProvider>
 	);
 }

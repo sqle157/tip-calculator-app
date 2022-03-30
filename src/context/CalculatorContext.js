@@ -19,27 +19,27 @@ export const CalculatorProvider = ({ children }) => {
 
 	// Handle Bill and People input
 	const handleOnChange = (e) => {
-		let value = e.target.value;
+		let value = e.currentTarget.value;
 
 		// console.log(value);
 		setIsReset(true);
-		setCurrentInput(e.target.className);
+		setCurrentInput(e.currentTarget.className);
 
 		// console.log(value);
 		if (Number(value) < 1 && value !== '') {
 			setMsg("Can't be 0");
+		} else if (!e.currentTarget.validity.valid) {
+			setMsg(e.currentTarget.validationMessage);
 		} else if (Number(value) > 0 && /^0+/.test(value)) {
 			setMsg('');
 			value = value.replace(/^0+/, '');
-		} else if (!e.target.validity.valid) {
-			setMsg(e.target.validationMessage);
 		} else {
 			setMsg('');
 		}
 
-		if (e.target.classList.contains('bill')) {
+		if (e.currentTarget.classList.contains('bill')) {
 			setBill(value);
-		} else if (e.target.classList.contains('people')) {
+		} else if (e.currentTarget.classList.contains('people')) {
 			setPeople(value);
 		}
 	};
@@ -58,6 +58,8 @@ export const CalculatorProvider = ({ children }) => {
 		} else if (e.target.classList.contains('tip--custom')) {
 			if (Number(value) > 0 && /^0+/.test(value)) {
 				value = value.replace(/^0+/, '');
+			} else if (!e.currentTarget.validity.valid) {
+				setMsg(e.currentTarget.validationMessage);
 			}
 			// Limit the maximum amount of tip percentage
 			if (value.length <= 4 && Number(value) >= 0 && Number(value) <= 50) {

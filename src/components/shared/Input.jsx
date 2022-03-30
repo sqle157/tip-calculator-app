@@ -21,7 +21,7 @@ function Input({ placeholder, className, value, step }) {
 
 	return (
 		<input
-			type='number'
+			type={'number'}
 			placeholder={placeholder}
 			className={className}
 			value={value}
@@ -31,8 +31,14 @@ function Input({ placeholder, className, value, step }) {
 					? (e) => handleOnChange(e)
 					: (e) => handleTipOption(e, e.target.value)
 			}
+			onInput={
+				className !== 'tip--custom tip'
+					? (e) => handleOnChange(e)
+					: (e) => handleTipOption(e, e.target.value)
+			}
 			onClick={className === 'tip--custom tip' ? (e) => removeActive(e.target) : null}
 			step={step}
+			min={className === 'tip--custom tip' ? 0 : 1}
 		/>
 	);
 }

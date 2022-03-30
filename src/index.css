@@ -342,4 +342,8 @@ body {
 	.calculator-results {
 		height: 16.25rem;
 	}
+
+	.label-wrapper {
+		flex-direction: column;
+	}
 }

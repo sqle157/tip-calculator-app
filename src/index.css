@@ -201,7 +201,7 @@ body {
 	font-size: var(--fs-24);
 }
 
-.tip:hover:not(:last-of-type) {
+.tips-wrapper .tip:not(:last-child):hover {
 	background-color: var(--clr-neutral-300);
 	color: var(--clr-neutral-900);
 }
